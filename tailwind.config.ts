@@ -73,7 +73,14 @@ const config: Config = {
         },
 
         extend: {
+            transitionTimingFunction: {
+                stretch: "cubic-bezier(.76,-0.7,.37,1.65)",
+            },
             colors: {
+                cherry: {
+                    50: "hsla(356, 54%, 95%, 1)",
+                    DEFAULT: "hsla(354, 59%, 48%, 1)",
+                },
                 primary: {
                     50: "hsl(220deg, 80%, 95%)",
                     100: "hsl(220deg, 80%, 90%)",
@@ -117,6 +124,7 @@ const config: Config = {
                 xs: "480px",
             },
             fontFamily: {
+                nohemi: ["Nohemi", "sans-serif"],
                 sans: ["Outfit", ...defaultTheme.fontFamily.sans],
             },
             minHeight: () => {

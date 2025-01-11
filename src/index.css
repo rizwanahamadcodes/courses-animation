@@ -1,4 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap");
+
+@font-face {
+    font-family: "Nohemi";
+    src: url("/assests/fonts/Nohemi-Bold.woff") format("woff"),
+        url("/assests/fonts/Nohemi-Bold.ttf") format("truetype"),
+        url("/assests/fonts/Nohemi-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.root {
+    @apply h-svh border;
+}
