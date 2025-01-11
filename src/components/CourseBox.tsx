@@ -1,3 +1,4 @@
+import { courses } from "@/App";
 import clsx from "clsx";
 import { BiPlusMedical } from "react-icons/bi";
 import { LuArrowRight } from "react-icons/lu";
@@ -11,34 +12,34 @@ export type Course = {
 
 type CourseBoxProps = {
     course: Course;
-    activeCourseId: number;
-    setActiveCourseId: React.Dispatch<React.SetStateAction<number>>;
+    activeCourse: Course;
+    setActiveCourse: React.Dispatch<React.SetStateAction<Course>>;
 };
 
 const CourseBox = (props: CourseBoxProps) => {
-    const { activeCourseId, setActiveCourseId, course } = props;
-    const { id, label, noOfCourses, description } = course;
+    const { activeCourse, setActiveCourse, course } = props;
+    const { label, noOfCourses, description } = course;
 
     return (
         <div
             onClick={() => {
-                setActiveCourseId(id);
+                setActiveCourse(course);
             }}
             className={clsx(
-                "relative bg-cherry flex  rounded-[32px] p-1.75 transition-all duration-1000 h-[461px] ease-stretch overflow-hidden",
-                id === activeCourseId ? "flex-[2]" : "flex-1"
+                "cursor-pointer relative bg-cherry flex  rounded-[32px] p-1.75 transition-all duration-1000 h-[461px] ease-stretch overflow-hidden",
+                activeCourse.id === course.id ? "flex-[2]" : "flex-1"
             )}>
             <div
                 className={clsx(
                     "absolute transition-all duration-1000 ease-stretch rounded-full bg-cherry-50 -left-10 -bottom-3",
-                    id === activeCourseId
+                    activeCourse.id === course.id
                         ? " h-[0] w-[0]"
                         : " h-[600px] w-[600px]"
                 )}></div>
             <div
                 className={clsx(
                     "absolute  translate-x-[180%] transition-all duration-1000",
-                    id === activeCourseId ? "" : ""
+                    activeCourse.id === course.id ? "" : ""
                 )}>
                 <a
                     href="#"
@@ -47,13 +48,34 @@ const CourseBox = (props: CourseBoxProps) => {
                     <LuArrowRight className=" h-1.25 w-1.25" />
                 </a>
             </div>
+
+            <div
+                className={clsx(
+                    "absolute flex px-2 justify-between top-1/2 -translate-y-full transition-all duration-1000 w-[530px] ease-stretch",
+                    courses.indexOf(course) < courses.indexOf(activeCourse)
+                        ? "left-full -translate-x-0 opacity-0"
+                        : courses.indexOf(course) ===
+                          courses.indexOf(activeCourse)
+                        ? "left-1/2 -translate-x-1/2 opacity-1"
+                        : "-left-full -translate-x-1/2 opacity-0"
+                )}>
+                <img src="/icons/react.svg" alt="" />
+                <img src="/icons/reactions.svg" alt="" />
+                <img src="/icons/stationery.svg" alt="" />
+                <img src="/icons/vue.svg" alt="" />
+            </div>
+
             <div className="flex relative mt-auto w-full gap-1">
                 <div
                     className={clsx(
                         "relative text-[150px] transition-[all] duration-1000 ease-stretch ",
-                        id === activeCourseId ? " text-gray-50" : "text-cherry"
+                        activeCourse.id === course.id
+                            ? " text-gray-50"
+                            : "text-cherry"
                     )}>
-                    <p className="leading-1  font-nohemi">{noOfCourses}</p>
+                    <p className="leading-1  font-nohemi">
+                        {noOfCourses.toString().padStart(2, "0")}
+                    </p>
                     <div className="absolute right-0 top-0 translate-x-1/2 -translate-y-1/2">
                         <BiPlusMedical className="text-2.25" />
                     </div>
@@ -61,11 +83,13 @@ const CourseBox = (props: CourseBoxProps) => {
                 <div
                     className={clsx(
                         "transition-[all] duration-1000 ease-stretch absolute origin-[5%_-60%] right-0 top-1/2 -translate-y-1/2",
-                        id != activeCourseId
+                        activeCourse.id != course.id
                             ? "-rotate-90 text-cherry"
                             : "text-gray-50"
                     )}>
-                    <h4 className="text-[28px] font-bold">{label}</h4>
+                    <h4 className="text-nowrap text-[28px] font-bold">
+                        {label}
+                    </h4>
                     <p className="text-1.125 font-normal w-[20ch]">
                         {description}
                     </p>

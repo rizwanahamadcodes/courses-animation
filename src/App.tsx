@@ -5,29 +5,29 @@ import CourseSection, {
     SectionSubtitle,
     SectionTitle,
 } from "./components/CourseSection";
+export const courses = [
+    {
+        id: 1,
+        label: "All Courses",
+        noOfCourses: 23,
+        description: "course you're powering through right now",
+    },
+    {
+        id: 3,
+        label: "Ongoing Courses",
+        noOfCourses: 10,
+        description: "course you're powering through right now",
+    },
 
+    {
+        id: 2,
+        label: "Upcoming Courses",
+        noOfCourses: 5,
+        description: "course you're powering through right now",
+    },
+];
 const App = () => {
-    const courses = [
-        {
-            id: 1,
-            label: "All Courses",
-            noOfCourses: 23,
-            description: "course you're powering through right now",
-        },
-        {
-            id: 2,
-            label: "All Courses",
-            noOfCourses: 23,
-            description: "course you're powering through right now",
-        },
-        {
-            id: 3,
-            label: "All Courses",
-            noOfCourses: 23,
-            description: "course you're powering through right now",
-        },
-    ];
-    const [activeCourseId, setActiveCourseId] = useState(courses[0].id);
+    const [activeCourse, setActiveCourse] = useState(courses[0]);
 
     return (
         <main className="flex items-center justify-center w-full h-full">
@@ -48,8 +48,8 @@ const App = () => {
                     {courses.map((course) => (
                         <CourseBox
                             course={course}
-                            activeCourseId={activeCourseId}
-                            setActiveCourseId={setActiveCourseId}
+                            activeCourse={activeCourse}
+                            setActiveCourse={setActiveCourse}
                         />
                     ))}
                 </Container>
