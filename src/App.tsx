@@ -5,27 +5,8 @@ import CourseSection, {
     SectionSubtitle,
     SectionTitle,
 } from "./components/CourseSection";
-export const courses = [
-    {
-        id: 1,
-        label: "All Courses",
-        noOfCourses: 23,
-        description: "course you're powering through right now",
-    },
-    {
-        id: 3,
-        label: "Ongoing Courses",
-        noOfCourses: 10,
-        description: "course you're powering through right now",
-    },
+import courses from "./data/courses";
 
-    {
-        id: 2,
-        label: "Upcoming Courses",
-        noOfCourses: 5,
-        description: "course you're powering through right now",
-    },
-];
 const App = () => {
     const [activeCourse, setActiveCourse] = useState(courses[0]);
 
@@ -47,6 +28,7 @@ const App = () => {
                 <Container className="flex gap-2">
                     {courses.map((course) => (
                         <CourseBox
+                            key={course.id}
                             course={course}
                             activeCourse={activeCourse}
                             setActiveCourse={setActiveCourse}
